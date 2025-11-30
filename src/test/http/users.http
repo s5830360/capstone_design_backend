@@ -6,23 +6,24 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb
 POST http://localhost:8080/api/auth/signup
 Content-Type: application/json
 
-{ "email": "king@gmail.com",
-  "name":  "김태국",
-  "nickname": "imaking",
-  "password": "1111"}
+{ "email": "mandoo@gmail.com",
+  "name":  "만두찢어먹는여자",
+  "nickname": "mandoo",
+  "password": "3333"}
 
 ### 로그인 -> 토큰 받기
-POST http://localhost:8080/api/auth/login
+POST https://capstonedesignbackend-production.up.railway.app/api/auth/login
 Content-Type: application/json
 
-{ "email": "king@gmail.com", "password": "1111" }
+{ "email": "mandoo@gmail.com", "password": "3333" }
 
 ### 보호 API 호출 (토큰 사용)
 GET http://localhost:8080/api/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzU5MTA3NTE5LCJleHAiOjE3NTkxNDM1MTl9.UAzqhWodZ3yw6GCXzw1UKkN8EzWf_MjAcyNbhrnypq8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5kb29AZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjQ1MDIzMTcsImV4cCI6MTc2NDUzODMxN30.GF5f5t3T6lT8QX-lHObUMR8OMSyV4AFiQ4RBC0yU7F0
 
 ### fastAPI 감정 분석 테스트
-POST http://127.0.0.1:8000/predict
+POST https://capstonedesignbackend-production.up.railway.app/api/analysis/temp
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5kb29AZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjQ1MDMzMDksImV4cCI6MTc2NDUzOTMwOX0.FVBYCYdD7Ksj-DIux4pm3tUhQ6rdQ5P1czarUc8iTMk
 Content-Type: multipart/form-data; boundary=BOUNDARY
 
 --BOUNDARY
@@ -33,19 +34,19 @@ Content-Type: application/octet-stream
 --BOUNDARY--
 
 ### 업로드 (토큰 필요)
-POST http://localhost:8080/api/recordings
+POST https://capstonedesignbackend-production.up.railway.app/api/recordings
 Content-Type: multipart/form-data; boundary=boundary
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2NDQ3NzYyMiwiZXhwIjoxNzY0NTEzNjIyfQ.ilOz-V2bx8T2yJisLj1o6pi1zK0zuay_aAazMrGUKK8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5kb29AZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjQ1MDMzMDksImV4cCI6MTc2NDUzOTMwOX0.FVBYCYdD7Ksj-DIux4pm3tUhQ6rdQ5P1czarUc8iTMk
 
 --boundary
 Content-Disposition: form-data; name="file"; filename="test_1.m4a"
 Content-Type: audio/m4a
 
-< C:\Users\user\Downloads\온라인강의소리.m4a
+< C:\Users\user\Downloads\빗소리.m4a
 --boundary
 Content-Disposition: form-data; name="description"
 
-스컬씅 피드2
+만두 피드 (서버 배포 테스트)
 --boundary
 Content-Disposition: form-data; name="latitude"
 
@@ -65,7 +66,7 @@ Content-Disposition: form-data; name="alias"
 --boundary
 Content-Disposition: form-data; name="emotion"
 
-happy
+sadness
 --boundary
 Content-Disposition: form-data; name="emotionPublic"
 

@@ -40,7 +40,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
                 var userOpt = userRepo.findByEmail(email);
 
-                if (userOpt.isPresent() && userOpt.get().isEnabled()) {
+                if (userOpt.isPresent()) {
 
                     var user = userOpt.get();
 
