@@ -23,8 +23,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5kb29AZ21haWwuY29tIiwic
 
 ### fastAPI 감정 분석 테스트
 POST https://capstonedesignbackend-production.up.railway.app/api/analysis/temp
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5kb29AZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjQ1MDMzMDksImV4cCI6MTc2NDUzOTMwOX0.FVBYCYdD7Ksj-DIux4pm3tUhQ6rdQ5P1czarUc8iTMk
 Content-Type: multipart/form-data; boundary=BOUNDARY
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5kb29AZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjQ1MDQ1NzgsImV4cCI6MTc2NDU0MDU3OH0.BILbKW475jurBGVcHP1sbtyys-3-zemcJSpGCwpLQ98
 
 --BOUNDARY
 Content-Disposition: form-data; name="file"; filename="sample.m4a"
@@ -36,7 +36,7 @@ Content-Type: application/octet-stream
 ### 업로드 (토큰 필요)
 POST https://capstonedesignbackend-production.up.railway.app/api/recordings
 Content-Type: multipart/form-data; boundary=boundary
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5kb29AZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjQ1MDMzMDksImV4cCI6MTc2NDUzOTMwOX0.FVBYCYdD7Ksj-DIux4pm3tUhQ6rdQ5P1czarUc8iTMk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5kb29AZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjQ1MDQ1NzgsImV4cCI6MTc2NDU0MDU3OH0.BILbKW475jurBGVcHP1sbtyys-3-zemcJSpGCwpLQ98
 
 --boundary
 Content-Disposition: form-data; name="file"; filename="test_1.m4a"
@@ -93,8 +93,7 @@ GET http://localhost:8080/api/recordings/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhQGV4YW1wbGUuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjQxNjE4MjgsImV4cCI6MTc2NDE5NzgyOH0.WUqIgf33O1RCV27UDGH_IlhU1vciILytReM6GYhnbLo
 
 ### 공개 피드 (누구나)
-GET http://localhost:8080/api/recordings/public
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2NDMwOTM1MywiZXhwIjoxNzY0MzQ1MzUzfQ.nfwFrV4nyABGI0q_R1PSPvK9pc5I5n9noI-mgypJ6NM
+GET https://capstonedesignbackend-production.up.railway.app/api/recordings/public
 
 ### 좋아요 누르기 (POST)
 POST http://localhost:8080/api/recordings/38/like
