@@ -1,0 +1,178 @@
+### 목록 (일반 유저)
+GET http://localhost:8080/api/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2MzY1NjI2OCwiZXhwIjoxNzYzNjkyMjY4fQ.JT6j6F-StOEnUYyxqO13bELynrsa_TG_sosojNKthLE
+
+### 회원가입
+POST http://localhost:8080/api/auth/signup
+Content-Type: application/json
+
+{ "email": "king@gmail.com",
+  "name":  "김태국",
+  "nickname": "imaking",
+  "password": "1111"}
+
+### 로그인 -> 토큰 받기
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{ "email": "king@gmail.com", "password": "1111" }
+
+### 보호 API 호출 (토큰 사용)
+GET http://localhost:8080/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzU5MTA3NTE5LCJleHAiOjE3NTkxNDM1MTl9.UAzqhWodZ3yw6GCXzw1UKkN8EzWf_MjAcyNbhrnypq8
+
+### fastAPI 감정 분석 테스트
+POST http://127.0.0.1:8000/predict
+Content-Type: multipart/form-data; boundary=BOUNDARY
+
+--BOUNDARY
+Content-Disposition: form-data; name="file"; filename="sample.m4a"
+Content-Type: application/octet-stream
+
+< C:\Users\user\Downloads\파도소리.m4a
+--BOUNDARY--
+
+### 업로드 (토큰 필요)
+POST http://localhost:8080/api/recordings
+Content-Type: multipart/form-data; boundary=boundary
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2NDQ3NzYyMiwiZXhwIjoxNzY0NTEzNjIyfQ.ilOz-V2bx8T2yJisLj1o6pi1zK0zuay_aAazMrGUKK8
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="test_1.m4a"
+Content-Type: audio/m4a
+
+< C:\Users\user\Downloads\온라인강의소리.m4a
+--boundary
+Content-Disposition: form-data; name="description"
+
+스컬씅 피드2
+--boundary
+Content-Disposition: form-data; name="latitude"
+
+35.134783
+--boundary
+Content-Disposition: form-data; name="longitude"
+
+129.102805
+--boundary
+Content-Disposition: form-data; name="address"
+
+부산광역시 남구 용소로 45
+--boundary
+Content-Disposition: form-data; name="alias"
+
+연구실
+--boundary
+Content-Disposition: form-data; name="emotion"
+
+happy
+--boundary
+Content-Disposition: form-data; name="emotionPublic"
+
+true
+--boundary
+Content-Disposition: form-data; name="feedPublic"
+
+true
+--boundary--
+
+### 특정 파일 다운로드/스트리밍
+GET http://localhost:8080/api/recordings/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2Mzk1Njk4NiwiZXhwIjoxNzYzOTkyOTg2fQ.pxTpfCXCXOVFWV7NecpExKE-f_fVv01d_WMeNngspEY
+
+### 특정 오디오 파일 다운로드/스트리밍
+GET http://localhost:8080/api/recordings/1/file
+
+### 인증 테스트
+GET http://localhost:8080/api/recordings/test-auth
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzYyNzY5MDk2LCJleHAiOjE3NjI4MDUwOTZ9._VPtpjSW7Qt0dfRLZj9wG-B5AhPpb5vJi7U3_Yb6BZU
+
+### 내 피드 (로그인 필요)
+GET http://localhost:8080/api/recordings/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhQGV4YW1wbGUuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjQxNjE4MjgsImV4cCI6MTc2NDE5NzgyOH0.WUqIgf33O1RCV27UDGH_IlhU1vciILytReM6GYhnbLo
+
+### 공개 피드 (누구나)
+GET http://localhost:8080/api/recordings/public
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2NDMwOTM1MywiZXhwIjoxNzY0MzQ1MzUzfQ.nfwFrV4nyABGI0q_R1PSPvK9pc5I5n9noI-mgypJ6NM
+
+### 좋아요 누르기 (POST)
+POST http://localhost:8080/api/recordings/38/like
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2NDQ3NzYyMiwiZXhwIjoxNzY0NTEzNjIyfQ.ilOz-V2bx8T2yJisLj1o6pi1zK0zuay_aAazMrGUKK8
+Content-Type: application/json
+
+### 좋아요 취소 (DELETE)
+DELETE http://localhost:8080/api/recordings/2/like
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2Mzk0Mjg3NSwiZXhwIjoxNzYzOTc4ODc1fQ.dUzmycrmF-83MI_tUmOy1qkYVwNKniO857pNzwJISY8
+
+### 내 피드 감정별 조회
+GET http://localhost:8080/api/recordings/me?emotion=sadness
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2Mzk1MTM4OCwiZXhwIjoxNzYzOTg3Mzg4fQ.rJLwE1iXvdK6f4XJiKh_K-IHlq-UorwpARGx10tx2xY
+
+### 내 피드 날짜별 조회
+GET http://localhost:8080/api/recordings/me?date=2025-11-20
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2Mzk0OTAxOCwiZXhwIjoxNzYzOTg1MDE4fQ.b-REjV39aTYiXzGzo71dBTN618eBBZrij2qV6ExzPwo
+
+### 내 피드 지도별 조회
+GET http://localhost:8080/api/recordings/me?minLat=35.123&maxLat=35.1806&minLng=129.0746&maxLng=129.131
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2NDEyNTI4NCwiZXhwIjoxNzY0MTYxMjg0fQ.3AemTMZ5yrk_zxLioD3Qiyw733OdO8kWAtc9JoAloAw
+
+### 내 피드 삭제
+DELETE http://localhost:8080/api/recordings/23
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2NDE1ODI2MiwiZXhwIjoxNzY0MTk0MjYyfQ.oZCAvLTzeYg8EFwRKaWcZtCx7hhCy7Yka39TgbiXtR4
+
+### 친구 요청 보내기
+POST http://localhost:8080/api/friends/request
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2NDQ3NzYyMiwiZXhwIjoxNzY0NTEzNjIyfQ.ilOz-V2bx8T2yJisLj1o6pi1zK0zuay_aAazMrGUKK8
+
+{
+  "targetNickname": "imaking"
+}
+
+### 받은 친구 요청 목록
+GET http://localhost:8080/api/friends/received
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraW5nQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzY0NDg1MjI4LCJleHAiOjE3NjQ1MjEyMjh9.OKuykrDFIPD6nbVqRQv4m5OZE2rPhfL2OpdxrTsTbco
+
+### 친구 요청 수락 (king이 seung을 수락)
+POST http://localhost:8080/api/friends/6/accept
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraW5nQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzY0NDg1MjI4LCJleHAiOjE3NjQ1MjEyMjh9.OKuykrDFIPD6nbVqRQv4m5OZE2rPhfL2OpdxrTsTbco
+
+### 친구 요청 거절 (king이 seung을 거절)
+POST http://localhost:8080/api/friends/6/reject
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraW5nQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzY0NDg1MjI4LCJleHAiOjE3NjQ1MjEyMjh9.OKuykrDFIPD6nbVqRQv4m5OZE2rPhfL2OpdxrTsTbco
+
+### 친구 목록 조회
+GET http://localhost:8080/api/friends/list
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraW5nQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzY0NDg1MjI4LCJleHAiOjE3NjQ1MjEyMjh9.OKuykrDFIPD6nbVqRQv4m5OZE2rPhfL2OpdxrTsTbco
+
+### 친구 피드 조회
+GET http://localhost:8080/api/recordings/home
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraW5nQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzY0MzA5NDA4LCJleHAiOjE3NjQzNDU0MDh9.CH61L29wtqkvPTbPAjK6kgmE2C6t6UGK0u3aQt9Kjtg
+
+### 특정 친구 피드만 조회
+GET http://localhost:8080/api/recordings/friend/skullseung
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraW5nQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzY0MzA5NDA4LCJleHAiOjE3NjQzNDU0MDh9.CH61L29wtqkvPTbPAjK6kgmE2C6t6UGK0u3aQt9Kjtg
+
+### user 검색
+GET http://localhost:8080/api/friends/search?keyword=sk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraW5nQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzY0MzA5NDA4LCJleHAiOjE3NjQzNDU0MDh9.CH61L29wtqkvPTbPAjK6kgmE2C6t6UGK0u3aQt9Kjtg
+
+### 친구 삭제
+DELETE http://localhost:8080/api/friends/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2NDMxNDY4OCwiZXhwIjoxNzY0MzUwNjg4fQ.kTUWED_1pFL76TD7UKHeinERcaIRJQFw9hH2N_BB4gA
+
+### 각 날짜별 대표 감정
+GET http://localhost:8080/api/stats/calendar?year=2025&month=11
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2NDQ3NzYyMiwiZXhwIjoxNzY0NTEzNjIyfQ.ilOz-V2bx8T2yJisLj1o6pi1zK0zuay_aAazMrGUKK8
+
+### 내가 받은 알림 조회
+GET http://localhost:8080/api/notifications
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhQGV4YW1wbGUuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjQ0ODI1NDcsImV4cCI6MTc2NDUxODU0N30.83FuQQo9nkuIlEf0Sl7obda7cGOyXayvmEhpu87o0nI
+
+### 알림 읽음 처리
+POST http://localhost:8080/api/notifications/1/read
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraW5nQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzY0NDg1MjI4LCJleHAiOjE3NjQ1MjEyMjh9.OKuykrDFIPD6nbVqRQv4m5OZE2rPhfL2OpdxrTsTbco
+
+### King에게 랜덤 리마인드 알림 보내기
+POST http://localhost:8080/api/notifications/remind
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraW5nQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzY0NDg1MjI4LCJleHAiOjE3NjQ1MjEyMjh9.OKuykrDFIPD6nbVqRQv4m5OZE2rPhfL2OpdxrTsTbco
