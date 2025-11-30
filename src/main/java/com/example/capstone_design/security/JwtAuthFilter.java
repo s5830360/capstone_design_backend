@@ -38,6 +38,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 var jws = jwtUtil.parse(token);
                 String email = jws.getBody().getSubject();   // ⭐ subject = email
 
+                System.out.println("[JWT] Token parse OK: " + email);
+
                 var userOpt = userRepo.findByEmail(email);
 
                 if (userOpt.isPresent()) {

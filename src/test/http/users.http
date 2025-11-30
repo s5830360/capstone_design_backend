@@ -36,7 +36,7 @@ Content-Type: application/octet-stream
 ### 업로드 (토큰 필요)
 POST https://capstonedesignbackend-production.up.railway.app/api/recordings
 Content-Type: multipart/form-data; boundary=boundary
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5kb29AZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjQ1MDQ1NzgsImV4cCI6MTc2NDU0MDU3OH0.BILbKW475jurBGVcHP1sbtyys-3-zemcJSpGCwpLQ98
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5kb29AZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjQ1MDc2NzIsImV4cCI6MTc2NDU0MzY3Mn0.mcGi409RAfMc9jjo92GtOPQ5114zF5iHtXUYNOcUEtU
 
 --boundary
 Content-Disposition: form-data; name="file"; filename="test_1.m4a"
