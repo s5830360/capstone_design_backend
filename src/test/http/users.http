@@ -12,14 +12,14 @@ Content-Type: application/json
   "password": "3333"}
 
 ### 로그인 -> 토큰 받기
-POST https://capstonedesignbackend-production.up.railway.app/api/auth/login
+POST http://localhost:8080/api/auth/login
 Content-Type: application/json
 
-{ "email": "mandoo@gmail.com", "password": "3333" }
+{ "email": "seung@gmail.com", "password": "0630" }
 
 ### 보호 API 호출 (토큰 사용)
-GET http://localhost:8080/api/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5kb29AZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjQ1MDIzMTcsImV4cCI6MTc2NDUzODMxN30.GF5f5t3T6lT8QX-lHObUMR8OMSyV4AFiQ4RBC0yU7F0
+GET https://capstonedesignbackend-production.up.railway.app/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5kb29AZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjQ1MDgzMjQsImV4cCI6MTc2NDU0NDMyNH0.UX7GNUTb7tJS-zGLDcs5VOgRcZ2LqlJYmTcPaueG3NU
 
 ### fastAPI 감정 분석 테스트
 POST https://capstonedesignbackend-production.up.railway.app/api/analysis/temp
@@ -34,9 +34,9 @@ Content-Type: application/octet-stream
 --BOUNDARY--
 
 ### 업로드 (토큰 필요)
-POST https://capstonedesignbackend-production.up.railway.app/api/recordings
+POST http://localhost:8080/api/recordings
 Content-Type: multipart/form-data; boundary=boundary
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5kb29AZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NjQ1MDc2NzIsImV4cCI6MTc2NDU0MzY3Mn0.mcGi409RAfMc9jjo92GtOPQ5114zF5iHtXUYNOcUEtU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZXVuZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2NDUwOTE5NywiZXhwIjoxNzY0NTQ1MTk3fQ.9HN8K41-NvaHVwmtfpO2ShDt3AARlCyxeb2SQVAVxVM
 
 --boundary
 Content-Disposition: form-data; name="file"; filename="test_1.m4a"
@@ -46,7 +46,7 @@ Content-Type: audio/m4a
 --boundary
 Content-Disposition: form-data; name="description"
 
-만두 피드 (서버 배포 테스트)
+로컬 서버 테스트
 --boundary
 Content-Disposition: form-data; name="latitude"
 
